@@ -15,8 +15,11 @@ namespace WebParserChallenge.Core
 
         public List<Entities.GoogleResult> GetResults()
         {
-            var nodes = this.htmlDocument.DocumentNode.SelectNodes("//li[@class='g']");         
-
+            var nodes = this.htmlDocument.DocumentNode.SelectNodes("//li[@class='g']");
+            if (nodes == null)
+            {
+                return new List<Entities.GoogleResult>();
+            }
             var query = from n in nodes
                         select new Entities.GoogleResult()
                         {

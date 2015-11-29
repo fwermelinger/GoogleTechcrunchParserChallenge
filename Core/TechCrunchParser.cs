@@ -16,12 +16,14 @@ namespace WebParserChallenge.Core
 
         public List<Entities.TechCrunchResult> GetResults()
         {
-            var node = this.htmlDocument.DocumentNode.SelectSingleNode("//*[@id='river1']");
-            var nodes = node.SelectNodes(".//div[@class='block-content']");
+
+            var nodes = this.htmlDocument.DocumentNode.SelectNodes(".//div[@class='block-content']");
 
             if (nodes != null)
-            {
+            {               
+
                 var query = from n in nodes
+                            where n.SelectSingleNode(".//p[@class='excerpt']") != null
                             select new Entities.TechCrunchResult()
                             {
                                 Title = System.Web.HttpUtility.HtmlDecode(n.SelectSingleNode(".//h2[@class='post-title']").InnerText),
@@ -32,7 +34,9 @@ namespace WebParserChallenge.Core
                             };
                 return query.ToList();
             }
-            else return new List<Entities.TechCrunchResult>();   
+
+
+            return new List<Entities.TechCrunchResult>();
         }
     }
 }

@@ -18,16 +18,17 @@ namespace WebParserChallenge
                 return;
             }
 
-            DoGoogleTask(args.First());
+            DoGoogleTask(args.First());          
             
+            DoTechCrunchTask();          
 
-
-            DoTechCrunchTask();
-           
-
+            //just to prevent console from closing
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Loads the TechCrunch frontpage and displays all results
+        /// </summary>
         private static void DoTechCrunchTask()
         {
             Console.WriteLine("Getting TechCrunch Results:");
@@ -51,7 +52,7 @@ namespace WebParserChallenge
             var parser = new Core.TechCrunchParser(resultHtml);
             var resultList = parser.GetResults();
 
-            foreach (var res in resultList.OrderBy(x => x.Title))
+            foreach (var res in resultList)
             {
                 Console.WriteLine("{0} (by {1})\n{2}\n{3}\n", res.Title, res.Author, res.Excerpt, res.Url);
             }
@@ -59,6 +60,10 @@ namespace WebParserChallenge
             Console.WriteLine("=== End of TechCrungh Results ===" + Environment.NewLine);
         }
 
+        /// <summary>
+        /// Loads the Google Results for a certain term and displays all results
+        /// </summary>
+        /// <param name="searchterm"></param>
         private static void DoGoogleTask(string searchterm)
         {
             Console.WriteLine("Getting Google Results:");
