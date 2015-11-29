@@ -16,12 +16,10 @@ namespace WebParserChallenge.Core
 
         public List<Entities.TechCrunchResult> GetResults()
         {
-
             var nodes = this.htmlDocument.DocumentNode.SelectNodes(".//div[@class='block-content']");
 
             if (nodes != null)
-            {               
-
+            {              
                 var query = from n in nodes
                             where n.SelectSingleNode(".//p[@class='excerpt']") != null
                             select new Entities.TechCrunchResult()

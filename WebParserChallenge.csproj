@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\BaseParser.cs" />
+    <Compile Include="Core\TechCrunchArticleParser.cs" />
     <Compile Include="Core\TechCrunchParser.cs" />
     <Compile Include="Entities\GoogleResult.cs" />
     <Compile Include="Core\GoogleResultsParser.cs" />

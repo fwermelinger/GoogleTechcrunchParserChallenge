@@ -19,14 +19,16 @@ namespace WebParserChallenge.Core
         }
 
         public async Task DownloadPageAsync()
-        {            
+        {
+            Console.WriteLine("Downloading Url: " + this.Uri.ToString());
+
             using (System.Net.Http.HttpClient client = new System.Net.Http.HttpClient())
             {
                 //client.BaseAddress = this.Uri;
                 var response = await client.GetAsync(Uri);
                 this.Result = await response.Content.ReadAsStringAsync();
 
-                
+                Console.WriteLine("Finished downloading {0} characters from url: " + this.Uri.ToString(), this.Result.Length);                
             }                       
         }
     }
