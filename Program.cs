@@ -53,7 +53,7 @@ namespace WebParserChallenge
                     {
                         globalWordCount[word.Key] += word.Value;
                     }
-                    else globalWordCount.Add(word.Key.ToLowerInvariant(), word.Value);
+                    else globalWordCount.Add(word.Key, word.Value);
                 }
             }
 

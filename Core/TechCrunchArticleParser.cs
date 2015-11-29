@@ -30,10 +30,11 @@ namespace WebParserChallenge.Core
                 var allTexts = paragraphs.Select(x => x.InnerText);
                 var completeContent = String.Join(" ", allTexts);
 
-                //first split words and make sure they are all lowercase
-                var allwords = completeContent.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Distinct();
+                //first split words and make sure they are all lowercase and remove - characters
+                var allwords = completeContent.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
                 allwords = (from w in allwords
-                           select w.ToLowerInvariant()).Distinct().ToList();
+                            select w.ToLowerInvariant().Replace("-", ""))
+                            .Distinct().ToList();
 
                 foreach (string searchTerm in allwords)
                 {
