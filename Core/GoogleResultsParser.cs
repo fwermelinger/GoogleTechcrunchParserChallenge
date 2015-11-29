@@ -6,23 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebParserChallenge.Core
 {
-    public class GoogleResultsParser
+    public class GoogleResultsParser : BaseParser
     {
-        private string RawHtml;
-        public HtmlAgilityPack.HtmlDocument htmlDocument { get; set; }
-
-
-        public GoogleResultsParser(string html)
-        {
-            if (string.IsNullOrEmpty(html))
-            {
-                throw new ArgumentException("html can not be empty");
-            }
-
-            this.RawHtml = html;
-
-            this.htmlDocument = new HtmlAgilityPack.HtmlDocument();
-            this.htmlDocument.LoadHtml(this.RawHtml);
+        public GoogleResultsParser(string html) : base(html)
+        {            
 
         }
 
